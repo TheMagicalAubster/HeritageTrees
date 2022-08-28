@@ -1,15 +1,22 @@
 import './App.css';
 import React from 'react';
 import {MapContainer, TileLayer, Marker, Popup, useMap} from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
+//import 'leaflet/dist/leaflet.css'
+import Trees from './data/trees.js';
 
-const position = [51.047, -114.050]
+const position = {Trees}
 
 function App() {
+
+
+
+
+
   return (
     <>
-    <div> </div>
-    <div id="map">
+    <div>
+    </div>
+    <div id="leaflet-container">
        <MapContainer 
           center={[51.047, -114.059]} 
           zoom={14} 
@@ -25,8 +32,13 @@ function App() {
           </Popup>
         </Marker>
       </MapContainer>
+      
     </div>
+    
     </>
+
+
+
   );
 }
 
