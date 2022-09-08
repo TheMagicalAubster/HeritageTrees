@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState, Text } from 'react';
+import React, { useEffect, useState } from 'react';
 import {MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import axios from 'axios';
 import L from "leaflet"
@@ -37,8 +37,7 @@ function App() {
   return(
     <div>
       <Navbar className="Navbar" style= {{ height: '10vh'}}>
-        <Container >Heritage Tree Marker Map</Container>
-        <Container></Container>
+        <Container>Heritage Tree Marker Map</Container>
       </Navbar>
       <MapContainer className='Map'
         center={position} 
@@ -51,22 +50,22 @@ function App() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {trees.length > 0 && trees.map((tree, index) => (
-          <Marker key={index}
-            position={[
-              tree.point.coordinates[1],
-              tree.point.coordinates[0]
-            ]}
-            icon={icon}
-            >
-              <Popup>
-                <div>This {tree.common_name} is:</div>
-                <ul>
-                  <li>Status: {tree.asset_type}</li>
-                  <li>Size: {tree.mature_size}</li>
-                  <li>Type: {tree.asset_subtype}</li>
-                </ul>
-              </Popup>
-            </Marker>
+        <Marker key={index}
+          position={[
+            tree.point.coordinates[1],
+            tree.point.coordinates[0]
+          ]}
+          icon={icon}
+          >
+          <Popup>
+            <div>This {tree.common_name} is:</div>
+            <ul>
+              <li>Status: {tree.asset_type}</li>
+              <li>Size: {tree.mature_size}</li>
+              <li>Type: {tree.asset_subtype}</li>
+            </ul>
+          </Popup>
+        </Marker>
         ))}
       </MapContainer>
     </div>
