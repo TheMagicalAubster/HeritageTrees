@@ -5,7 +5,15 @@
   border-radius: 10px;
 }
 
+.Navbar {
+  display: flex;
+  justify-content: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 50px;
+  margin-top: 5%;
+  margin-left: 17%;
 
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

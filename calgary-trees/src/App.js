@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Text } from 'react';
 import {MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import axios from 'axios';
 import L from "leaflet"
@@ -29,22 +29,17 @@ function App() {
     axios.get("https://data.calgary.ca/resource/tfs4-3wwa.json?heritage_trees=Y&$limit=600000")
     .then((response) => {
       const allTrees = response.data;
-      // console.log(response)
       setTrees(allTrees)
-      // allTrees.map((item, index) => {
-      //   console.log(item, index)
-      //   return 1;
-      // })
-      //setTrees();
     })
     .catch(error => console.error(`Error: ${error}`));
   }
 
   return(
     <div>
-      <Navbar
-        style= {{ height: '10vh'}}
-        ></Navbar>
+      <Navbar className="Navbar" style= {{ height: '10vh'}}>
+        <Container >Heritage Tree Marker Map</Container>
+        <Container></Container>
+      </Navbar>
       <MapContainer className='Map'
         center={position} 
         zoom={14} 
@@ -64,24 +59,18 @@ function App() {
             icon={icon}
             >
               <Popup>
-                This here is a: {tree.asset_type}
-                The kind of tree it is: {tree.asset_subtype} 
-                The common name is: {tree.common_name}
-                This tree is bound to get: {tree.mature_size}
-                The maintenance is: {tree.tree_maintenance}
-                They who do that is: {tree.maintained_by}
-
+                <div>This {tree.common_name} is:</div>
+                <ul>
+                  <li>Status: {tree.asset_type}</li>
+                  <li>Size: {tree.mature_size}</li>
+                  <li>Type: {tree.asset_subtype}</li>
+                </ul>
               </Popup>
             </Marker>
         ))}
-
-
       </MapContainer>
-
     </div>
   )
-
-
 }
 
 export default App;
